@@ -25,7 +25,7 @@ class UserServiceTest extends TestCase
     public function testLoginSuccess()
     {
         $this->seed(UserSeeder::class);
-        self::assertTrue($this->userService->login("salman@localhost","salman"));
+        self::assertTrue($this->userService->login("user@localhost","user"));
     }
     public function testLoginFailed()
     {
@@ -33,6 +33,6 @@ class UserServiceTest extends TestCase
     }
     public function testLoginWrongPassword()
     {
-        self::assertFalse($this->userService->login("salman","12345"));
+        self::assertFalse($this->userService->login("user","12345"));
     }
 }

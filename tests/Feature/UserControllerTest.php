@@ -18,7 +18,7 @@ class UserControllerTest extends TestCase
 
      protected function setUp():void{
         parent::setUp();
-        DB::delete("delete from users");
+        // DB::delete("delete from users");
      }
 
     public function testLoginPage()
@@ -30,22 +30,22 @@ class UserControllerTest extends TestCase
     {
         $this->seed(UserSeeder::class);
         $this->post("/login",[
-            "user" => "salman@localhost",
-            "password" => "salman"
+            "user" => "user@localhost",
+            "password" => "user"
         ])->assertRedirect("/")
-        ->assertSessionHas("user","salman@localhost");
+        ->assertSessionHas("user","user@localhost");
     }
     public function testLoginPageMember(){
         $this->withSession([
-            "user" => "salman"
+            "user" => "user"
         ])->get("/login")
         ->assertRedirect("/");
     }
     public function testLoginPageAlreadyLogin(){
         $this->withSession([
-            "user" => "salman"
+            "user" => "user"
         ])->post("/login",[
-            "user" => "salman",
+            "user" => "user",
             "password" => "123"
         ])->assertRedirect("/");
     }
@@ -65,7 +65,7 @@ class UserControllerTest extends TestCase
     }
     public function testLogout()
     {
-        $this->withSession(["user" => "salman"])
+        $this->withSession(["user" => "user"])
         ->post("/logout")
             ->assertRedirect("/")
             ->assertSessionMissing("user");

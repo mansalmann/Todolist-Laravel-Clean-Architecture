@@ -16,7 +16,7 @@ class TodoRequest extends FormRequest
     public function __construct(private TodolistService $todolistService){}
     public function authorize(): bool
     {
-        return $this->user() !== null;
+        return true;
     }
 
     /**
